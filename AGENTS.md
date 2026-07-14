@@ -24,7 +24,7 @@ client-side site; progress lives in `localStorage["aoife-columns-progress"]`.
 + **🔁 Practice** (five Solo problems in a row, ⭐/✅ per problem). The engine
 (`lib/engine/`) is a copy of the sibling's with ONE extension (§3).
 
-**8 levels** (`lib/levels/`), one ladder, 3 families on the home grid:
+**9 levels** (`lib/levels/`), one ladder, 3 families on the home grid:
 
 | # | id | teaches |
 |---|----|---------|
@@ -35,7 +35,8 @@ client-side site; progress lives in `localStorage["aoife-columns-progress"]`.
 | 5 | `double-borrow` | 3-digit, borrows in ones AND tens (tens crossed out twice) |
 | 6 | `carry-the-one` | 2-digit addition, ones overflow → write digit, carry the 1 |
 | 7 | `big-carry` | 3-digit addition, 1–2 carries |
-| 8 | `missing-digits` | the actual test format: hidden digits solved by "answer + bottom = top" check-adding |
+| 8 | `detective-school` | missing-digits on-ramp: 2-digit, NO carrying — the flip-to-adding trick alone |
+| 9 | `missing-digits` | the actual test format: 3 hidden digits, both columns carry, full check-adding |
 
 Home page: "⭐ start here" ring on the first level without a solo pass. Nothing locked.
 

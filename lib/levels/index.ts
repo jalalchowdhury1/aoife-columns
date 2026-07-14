@@ -6,6 +6,7 @@ import { bigBorrow } from "./big-borrow";
 import { doubleBorrow } from "./double-borrow";
 import { carryTheOne } from "./carry-the-one";
 import { bigCarry } from "./big-carry";
+import { detectiveSchool } from "./detective-school";
 import { missingDigits } from "./missing-digits";
 
 // Ladder order — Level 1..8. The home page shows a "⭐ start here" ring on the
@@ -18,6 +19,7 @@ export const LEVELS: Framework[] = [
   doubleBorrow,
   carryTheOne,
   bigCarry,
+  detectiveSchool,
   missingDigits,
 ];
 
