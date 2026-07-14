@@ -106,11 +106,45 @@ lib/levels/<id>.ts      — one level each; shared.ts = step factories
 lib/levels/index.ts     — LEVELS ladder + FAMILIES + LEVEL_NUM + byId()
 lib/levels/levels.test.ts — the 500-seed self-test harness
 docs/superpowers/       — design spec
+docs/worksheets/        — printable PDF worksheets + their generators (§6)
 ```
 
 `npm run dev` / `npm run build` / `npm run lint` / `npm test` (Vitest). No env vars, no secrets.
 
-## 6. Gotchas
+## 6. Printable worksheets (`docs/worksheets/`) — the template that worked
+
+Paper companions to the app. The first one (`missing-digit-detective-01.pdf`, from
+`gen_worksheet.py`) landed particularly well with Aoife — Jalal has confirmed the
+format. **Treat it as the template for every future worksheet**; don't reinvent.
+
+What made it work — keep ALL of this:
+
+- **Teaching, not just drilling.** A hint box at the top states the method in her
+  words before problem 1: *"the bottom number + the answer must rebuild the top
+  number. Add UP the tower, ones first — don't forget the little carried 1s!"* That's
+  level 8's Add-It-Back idea restated — the worksheet reinforces the app's language.
+- **Highlighted numbers.** Hidden digits are **dashed purple boxes** (same visual as
+  the app's detective boxes) sized to invite a written digit. In the answer key the
+  found digits are **red with a red circle/border** so a grown-up can grade in seconds
+  without re-solving.
+- **Same look as the app**: purple/pink theme, Comic Sans/Chalkboard, numbered purple
+  badge per problem, minus sign in red, answer line under the bottom row.
+- **Answer key on its own page** (`page-break-before: always`), labelled "for
+  grown-ups", never facing the puzzles.
+- **Generator rules mirror §4**: exactly one hidden digit per column, spread across
+  ≥2 different rows (unique solution); ≥1 carry in the check-add (no freebies); dedupe
+  on (top, bottom); fixed `random.seed(...)` so a worksheet is reproducible — new
+  worksheet = new seed + new versioned filename (`-02.pdf`, `-03.pdf`, …), never
+  regenerate an old one Aoife already did.
+- **PDF pipeline**: Python writes styled HTML → headless Chrome
+  (`--headless --disable-gpu --no-pdf-header-footer --print-to-pdf=…`). Cards need
+  `break-inside: avoid` + `page-break-inside: avoid` or Chrome splits them across
+  pages. 10 three-digit problems fit 5-per-page in a 2-column grid at 11.5mm cells /
+  21pt digits — shrink those two numbers first if a new format overflows.
+
+Commit both the generator and the PDF.
+
+## 7. Gotchas
 
 - **Never commit `node_modules` or npm caches** (an old sibling repo once committed a
   469MB cache). `.gitignore` covers them.
