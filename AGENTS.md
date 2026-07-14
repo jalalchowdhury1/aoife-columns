@@ -146,6 +146,11 @@ What made it work — keep ALL of this:
   `break-inside: avoid` + `page-break-inside: avoid` or Chrome splits them across
   pages. 10 three-digit problems fit 5-per-page in a 2-column grid at 11.5mm cells /
   21pt digits — shrink those two numbers first if a new format overflows.
+- **Printing on the Brother HL-L2350DW**: it silently discards Chrome-generated
+  PDFs (job "completes", nothing comes out). Flatten first, then print:
+  `gs -q -dNOPAUSE -dBATCH -sDEVICE=pdfimage8 -r300 -o flat.pdf <worksheet>.pdf`
+  then `lp -d Brother_HL_L2350DW_series -o sides=one-sided flat.pdf` (one-sided so
+  the answer key is a separate sheet). Keep the ORIGINAL vector PDF in the repo.
 
 Commit both the generator and the PDF.
 
