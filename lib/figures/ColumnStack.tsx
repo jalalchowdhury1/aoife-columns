@@ -26,7 +26,11 @@ function TopCell({ col, spec, present }: { col: number; spec: ColumnsSpec; prese
   const revealed = state.reveal?.top?.[col];
   if (!present) return <div className={CELL} />;
   const digit = digitsOf(spec.top, spec.cols)[col];
-  if (hidden) return <BoxCell value={revealed} />;
+  if (hidden) {
+    // a box can be struck out (it lent 1) even before its digit is known
+    const struck = state.strike?.includes(col) || state.cross?.[col] !== undefined;
+    return <BoxCell value={revealed} struck={struck} />;
+  }
   const cross = state.cross?.[col];
   if (cross === undefined) return <div className={`${CELL} text-purple-800`}>{digit}</div>;
   if (cross === 10 + digit) {
@@ -68,8 +72,9 @@ function AnsCell({ col, spec }: { col: number; spec: ColumnsSpec }) {
   );
 }
 
-// A detective box: dashed until its digit is found.
-function BoxCell({ value }: { value?: number }) {
+// A detective box: dashed until its digit is found. `struck` draws the same
+// pink strike a borrowed-from digit gets — the box lent 1 like any neighbour.
+function BoxCell({ value, struck }: { value?: number; struck?: boolean }) {
   return (
     <div className="w-14 h-14 p-1">
       <div
@@ -77,7 +82,7 @@ function BoxCell({ value }: { value?: number }) {
           value !== undefined ? "border-pink-400 bg-pink-50 text-pink-600" : "border-purple-300 bg-purple-50 text-purple-300"
         }`}
       >
-        {value ?? "?"}
+        <span className={struck ? "line-through decoration-pink-500 decoration-4" : ""}>{value ?? "?"}</span>
       </div>
     </div>
   );

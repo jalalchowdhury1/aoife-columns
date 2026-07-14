@@ -9,6 +9,10 @@ export interface ColumnsState {
   //   value === 10 + original digit  → borrow landed here: little 1, no strike
   //   anything else                  → original digit struck, value written above
   cross?: Record<number, number>;
+  // cols whose top cell is struck out with NOTHING written above yet — a
+  // mystery box that lent 1 before its digit is known (zero-case). Once the
+  // value is worked out, set cross[col] as usual; strike keeps the line.
+  strike?: number[];
   carry?: number[]; // cols with a little +1 above (addition / detective check)
   ans?: Record<number, number>; // answer digits filled so far (col -> digit)
   reveal?: Partial<Record<"top" | "bottom" | "ans", Record<number, number>>>; // solved detective boxes

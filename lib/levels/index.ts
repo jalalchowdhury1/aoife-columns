@@ -9,6 +9,7 @@ import { bigCarry } from "./big-carry";
 import { addItBack } from "./add-it-back";
 import { detectiveSchool } from "./detective-school";
 import { missingDigits } from "./missing-digits";
+import { zeroCase } from "./zero-case";
 
 // Ladder order — Level 1..8. The home page shows a "⭐ start here" ring on the
 // first level without a solo pass. Nothing is ever locked.
@@ -23,6 +24,7 @@ export const LEVELS: Framework[] = [
   addItBack,
   detectiveSchool,
   missingDigits,
+  zeroCase,
 ];
 
 export const FAMILIES = ["➖ Taking Away", "➕ Adding Up", "🕵️ Missing Digits"];

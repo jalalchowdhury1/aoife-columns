@@ -24,7 +24,7 @@ client-side site; progress lives in `localStorage["aoife-columns-progress"]`.
 + **🔁 Practice** (five Solo problems in a row, ⭐/✅ per problem). The engine
 (`lib/engine/`) is a copy of the sibling's with ONE extension (§3).
 
-**10 levels** (`lib/levels/`), one ladder, 3 families on the home grid:
+**11 levels** (`lib/levels/`), one ladder, 3 families on the home grid:
 
 | # | id | teaches |
 |---|----|---------|
@@ -38,6 +38,7 @@ client-side site; progress lives in `localStorage["aoife-columns-progress"]`.
 | 8 | `add-it-back` | WHY the trick works: a take-away splits the top into two parts; adding glues them back (1-digit) |
 | 9 | `detective-school` | missing-digits on-ramp: 2-digit, NO carrying — the flip-to-adding trick alone |
 | 10 | `missing-digits` | the actual test format: 3 hidden digits, both columns carry, full check-adding |
+| 11 | `zero-case` | worksheet-#8 boss (◻05 − 396 shape): borrow ACROSS a zero, and strike out the mystery box itself before its digit is known |
 
 Home page: "⭐ start here" ring on the first level without a solo pass. Nothing locked.
 
@@ -69,6 +70,10 @@ the bare initial figure** — test conditions, no work marks.
 - `cross[col]` semantics: value `=== 10 + original digit` → little 1 in front, no
   strike (a borrow LANDED); anything else → original struck, value written above (it
   LENT one). Level 5's tens column relies on the second form after the first.
+- `strike: number[]` — cols whose TOP cell is struck with nothing above yet: a
+  mystery box that lent 1 before its digit is known (level 11 only). A hidden top
+  cell also renders struck whenever `cross[col]` is set; `reveal` then shows the
+  found digit still wearing its strike — the full pen-and-paper picture.
 - Design law (inherited from the sibling's Time & Clocks): **see it happen, never
   memorize it** — the cross-out appears the moment she answers the borrow step.
 
@@ -86,14 +91,14 @@ are `rng.shuffle`d — keep it that way).
 **Keep the numbers clean.** Generation is constructive (no rejection loops): ranges
 are chosen so borrows/carries happen exactly where the level teaches them, answers
 never get leading zeros, level 5 never borrows across a zero (deliberate scope cut —
-if Jalal wants borrow-across-zero, it's a NEW level 5b, don't loosen level 5), and
+borrow-across-zero lives in level 11 `zero-case`; still don't loosen level 5), and
 level 8 always has both carries (same shape as the real test problem, uniquely
 solvable by construction).
 
 ## 5. Repo layout
 
 ```
-app/page.tsx            — home grid (8 tiles, 3 families, start-here ring) + parent peek (5 taps on title)
+app/page.tsx            — home grid (level tiles by family, start-here ring) + parent peek (5 taps on title)
 app/f/[id]/page.tsx     — level screen; mounts <StageEngine>
 app/globals.css         — Tailwind v4 theme (pink/purple, Bubblegum Sans)
 lib/types.ts            — Framework / Problem / Step / Stage

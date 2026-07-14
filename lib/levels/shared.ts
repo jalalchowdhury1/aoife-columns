@@ -17,6 +17,7 @@ export function snapper(initial: ColumnsState = {}) {
       ...st,
       ...d,
       cross: { ...st.cross, ...d.cross },
+      strike: d.strike ? [...(st.strike ?? []), ...d.strike] : st.strike,
       carry: d.carry ? [...(st.carry ?? []), ...d.carry] : st.carry,
       ans: { ...st.ans, ...d.ans },
       reveal: d.reveal

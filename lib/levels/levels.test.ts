@@ -19,9 +19,9 @@ function liveAnswers(p: Problem): Set<number> {
 }
 
 describe("level registry", () => {
-  it("has 10 levels with unique ids", () => {
-    expect(LEVELS.length).toBe(10);
-    expect(new Set(LEVELS.map((f) => f.id)).size).toBe(10);
+  it("has 11 levels with unique ids", () => {
+    expect(LEVELS.length).toBe(11);
+    expect(new Set(LEVELS.map((f) => f.id)).size).toBe(11);
   });
 });
 
