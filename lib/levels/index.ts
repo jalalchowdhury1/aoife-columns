@@ -6,6 +6,7 @@ import { bigBorrow } from "./big-borrow";
 import { doubleBorrow } from "./double-borrow";
 import { carryTheOne } from "./carry-the-one";
 import { bigCarry } from "./big-carry";
+import { addItBack } from "./add-it-back";
 import { detectiveSchool } from "./detective-school";
 import { missingDigits } from "./missing-digits";
 
@@ -19,6 +20,7 @@ export const LEVELS: Framework[] = [
   doubleBorrow,
   carryTheOne,
   bigCarry,
+  addItBack,
   detectiveSchool,
   missingDigits,
 ];
