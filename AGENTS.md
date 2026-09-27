@@ -176,3 +176,13 @@ Commit both the generator and the PDF.
   hints must never state the answer verbatim.
 - 🔁 Practice is a sibling `mode` in StageEngine, NOT a 5th member of `STAGES` — do
   not fold it into the stage array (it would change progress semantics).
+
+## Home Screen install (2026-09-27)
+
+Progress is localStorage-only, and Safari wipes a site's storage after 7 days without a
+visit. A web app **added to the Home Screen** is exempt from that purge, so the app ships
+`app/manifest.ts` (→ `/manifest.webmanifest`, display standalone), `app/apple-icon.png`
+(180px, → `<link rel="apple-touch-icon">`), `public/icon-192.png` + `public/icon-512.png`,
+and `appleWebApp` + `apple-mobile-web-app-capable` in `app/layout.tsx` metadata. Icons are a
+pink-400 → purple-500 gradient with a white glyph. Don't remove these. Caveat: the installed
+app has its OWN storage — stars earned in the Safari tab do not carry over to the icon.

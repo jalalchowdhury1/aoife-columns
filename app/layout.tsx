@@ -15,6 +15,10 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Aoife — Borrow & Carry",
   description: "Learn column subtraction and addition — borrowing, carrying, and missing digits.",
+  // Home Screen install — see app/manifest.ts (installed web apps keep localStorage).
+  applicationName: "Borrow & Carry",
+  appleWebApp: { capable: true, title: "Borrow & Carry", statusBarStyle: "default" },
+  other: { "apple-mobile-web-app-capable": "yes" },
 };
 
 export default function RootLayout({
